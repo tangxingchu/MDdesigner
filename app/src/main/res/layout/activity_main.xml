@@ -32,4 +32,5 @@
             android:background="#fff"
             android:textSize="30sp"
             android:text="滑动菜单"/>
+
 </android.support.v4.widget.DrawerLayout>
