@@ -1,7 +1,9 @@
 package com.tangxc.mddesigner.mddesigner;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -30,6 +32,28 @@ public class MainActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         }
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navView);
+        navigationView.setCheckedItem(R.id.nav_call);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                drawerLayout.closeDrawers();
+                return true;
+            }
+        });
+        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //第一个参数v 可以改为drawerLayout试下， drawerLayout不是coordinatorLayout的子控件，所有监听不到Snackbar的事件
+                Snackbar.make(v, "fab clicked", Snackbar.LENGTH_SHORT).setAction("Undo", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MainActivity.this, "floatingActionButton", Toast.LENGTH_SHORT).show();
+                    }
+                }).show();
+            }
+        });
         /*
         setContentView(R.layout.activity_main_back);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
