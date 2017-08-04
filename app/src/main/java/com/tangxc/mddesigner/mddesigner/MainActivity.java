@@ -9,15 +9,25 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.tangxc.bean.Fruit;
+import com.tangxc.bean.FruitAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
+
+    private FruitAdapter fruitAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +64,19 @@ public class MainActivity extends AppCompatActivity {
                 }).show();
             }
         });
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        List<Fruit> fruits = new ArrayList<>();
+        for(int i = 0; i < 100; i++) {
+            String name = "fruit" + i;
+            Fruit fruit = new Fruit(R.drawable.ic_launcher, name);
+            fruits.add(fruit);
+        }
+        fruitAdapter = new FruitAdapter(fruits);
+        recyclerView.setAdapter(fruitAdapter);
+
         /*
         setContentView(R.layout.activity_main_back);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
