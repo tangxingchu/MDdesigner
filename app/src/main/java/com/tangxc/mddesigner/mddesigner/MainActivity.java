@@ -7,6 +7,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -77,6 +78,13 @@ public class MainActivity extends AppCompatActivity {
         fruitAdapter = new FruitAdapter(fruits);
         recyclerView.setAdapter(fruitAdapter);
 
+        //刷新控件
+        SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.fruit_refresh);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            refreshFruit();
+        });
+
         /*
         setContentView(R.layout.activity_main_back);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -91,6 +99,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         */
+    }
+
+    private void refreshFruit() {
+
     }
 
     @Override
