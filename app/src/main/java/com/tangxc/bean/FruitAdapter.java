@@ -54,6 +54,10 @@ public class FruitAdapter extends RecyclerView.Adapter<FruitAdapter.ViewHolder> 
             mContext = parent.getContext();
         }
         View view = LayoutInflater.from(mContext).inflate(R.layout.fruit_item, parent, false);
+        final  ViewHolder viewHolder = new ViewHolder(view);
+        viewHolder.cardView.setOnClickListener((v) -> {
+            
+        });
         return new ViewHolder(view);
     }
 

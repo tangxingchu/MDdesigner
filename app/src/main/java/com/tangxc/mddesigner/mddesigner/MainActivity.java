@@ -1,5 +1,6 @@
 package com.tangxc.mddesigner.mddesigner;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.tangxc.bean.Fruit;
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "floatingActionButton", Toast.LENGTH_SHORT).show();
                     }
                 }).show();
+
             }
         });
 
@@ -78,6 +81,11 @@ public class MainActivity extends AppCompatActivity {
         }
         fruitAdapter = new FruitAdapter(fruits);
         recyclerView.setAdapter(fruitAdapter);
+        //
+        //ImageView imageView = (ImageView) findViewById(R.id.fruit_image);
+        /*imageView.setOnClickListener((view) -> {
+            Toast.makeText(this, "click image", Toast.LENGTH_SHORT).show();
+        });*/
 
         //刷新控件
         SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.fruit_refresh);
@@ -116,7 +124,10 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.launcher:
-                Toast.makeText(this, "launcher", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "launcher", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                MainActivity.this.getApplicationContext().startActivity(intent);
                 break;
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
