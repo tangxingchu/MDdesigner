@@ -7,3 +7,6 @@
 /build
 /captures
 .externalNativeBuild
+/ReactAndroid
+/ReactCommon
+/js/node_modules

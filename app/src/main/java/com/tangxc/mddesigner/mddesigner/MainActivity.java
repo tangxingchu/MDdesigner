@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -125,7 +126,8 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.launcher:
                 //Toast.makeText(this, "launcher", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                //Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                Intent intent = new Intent(MainActivity.this, MyReactActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 MainActivity.this.getApplicationContext().startActivity(intent);
                 break;
@@ -134,5 +136,11 @@ public class MainActivity extends AppCompatActivity {
             default: break;
         }
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("MainActivity", "onResume");
     }
 }
